@@ -8,9 +8,7 @@ You can set up Jekyll to run on your computer, allowing you to make changes and 
 
 Jekyll setup instructions are available on their website for both [Windows](http://jekyllrb.com/docs/windows/) and [Linux/macOS](http://jekyllrb.com/docs/installation/). If you are using Windows, we recommend that you follow the RubyInstaller option - that is the one that has worked best for us so far.
 
-## Getting Git Set Up Locally
 
-Before you can push changes to the server, you'll need to make a GitHub account and have a team lead add you to the Team 4099 organization.
 
 ### Git Terms
 
