@@ -37,8 +37,8 @@ scene.add(light);
 camera.position.z = 5;
 var controls = new OrbitControls(camera, renderer.domElement);
 
-document.getElementById("fileUP").onchange = fileUP;
-
+document.getElementById("fileUPCONFIRM").onclick = fileUP;
+document.getElementById("RESETbtn").onclick = resetScene;
 function animate() {
     renderer.render(scene, camera);
     // cube.rotation.x += 0.01;
@@ -57,12 +57,14 @@ if (WebGL.isWebGLAvailable()) {
 
 function fileUP() {
     var file = document.getElementById("fileUP").files[0];
+    console.log(document.getElementById("fileUP").files[0]);
     if (file) {
-        if (!toString(comparisonSelect.value).includes("chall")) {
-            for( var i = scene.children.length - 1; i >= 0; i--) { 
+        console.log(comparisonSelect.value);
+        if (comparisonSelect.value.includes("chall")) {
+            for (var i = scene.children.length - 1; i >= 0; i--) {
                 let obj = scene.children[i];
-                scene.remove(obj); 
-            }           
+                scene.remove(obj);
+            }
             progressBar.classList.add("bg-success");
             progressBar.classList.remove("bg-danger");
             referenceBar.classList.add("bg-success");
@@ -105,6 +107,8 @@ function fileUP() {
         else {
             alert("No Comparison Selected!");
         }
+    } else{
+        alert("No File Selected!");
     }
 }
 
@@ -177,7 +181,7 @@ function compareModels() {
             volumeModalText.innerHTML = "Upload volume is " + volumeCalculated + "\nReference volume is " + compVol;
             volumeModal.show();
         },
-        function(xhr){
+        function (xhr) {
             referenceBar.ariaValueNow = (xhr.loaded / xhr.total * 100);
             referenceBar.style = "width: " + (xhr.loaded / xhr.total * 100) + "%";
             console.log((xhr.loaded / xhr.total * 100) + '% loaded');
@@ -185,4 +189,12 @@ function compareModels() {
         loadingError
     );
     return compVol;
+}
+
+function resetScene() {
+    for (var i = scene.children.length - 1; i >= 0; i--) {
+        let obj = scene.children[i];
+        scene.remove(obj);
+    }
+
 }
