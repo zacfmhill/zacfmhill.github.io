@@ -11,6 +11,7 @@ permalink: /3DCompare
           }
         }
       </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjs@13.0.2/lib/browser/math.min.js"></script>
 <script type="module" src="../scripts/3DCompare.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -29,15 +30,26 @@ permalink: /3DCompare
                 <option value="chall1.obj">Air Boat</option>
                 <option value="chall2.obj">Lamp</option>
                 <option value="chall3.obj">ROI</option>
+                <option value="chall4.obj">Reference</option>
             </select>
         </div>
         <div class="col-3">
             <input type="file" id="fileUP" name="File Upload" value="File Upload" />
         </div>
         <div class="col-3">
-            <button id = "fileUPCONFIRM">UPLOAD</button>
-            <button id = "RESETbtn">RST</button>
+            <select class="custom-select" id="fileUnitSelect">
+                <option value="mm" selected>mm</option>
+                <option value="inch">inch</option>
+                <option value="m">meter</option>
+                <option value="cm">cm</option>
+            </select>
         </div>
+        <div class="col-3">
+            <button id="fileUPCONFIRM">UPLOAD</button>
+            <button id="RESETbtn">RST</button>
+
+        </div>
+
     </div>
     <div class="row justify-content-start">
         <div class="col-3">
@@ -51,6 +63,9 @@ permalink: /3DCompare
                 <div class="progress-bar" id="fileUpProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100"></div>
             </div>
+        </div>
+        <div class="col-3">
+
         </div>
     </div>
 </div>

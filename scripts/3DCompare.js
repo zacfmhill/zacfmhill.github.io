@@ -4,11 +4,9 @@ import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+var fileUnits = "";
 const renderer = new THREE.WebGLRenderer();
 const stlLoader = new STLLoader();
 const objLoader = new OBJLoader();
@@ -16,6 +14,7 @@ const progressBar = document.getElementById("fileUpProgress");
 const referenceBar = document.getElementById("fileSelectProgress")
 const volumeModalText = document.getElementById("volumeDisplayText");
 const comparisonSelect = document.getElementById("comparisonFileSelect");
+const unitSelect = document.getElementById("fileUnitSelect");
 const userImportMaterial = new THREE.MeshNormalMaterial();
 const referenceFileMaterial = new THREE.MeshBasicMaterial({ color: 0xFF0000, wireframe: true });
 
@@ -23,9 +22,9 @@ var volumeModal = new bootstrap.Modal(document.getElementById('volumeCheckModal'
 var volumeCalculated = 0;
 var comparisonVolume = 0;
 renderer.setSize(window.innerWidth, window.innerHeight);
-var x = renderer.domElement;
-x.className = "ThreeJSCANVAS";
-document.body.appendChild(x);
+var domElem = renderer.domElement;
+domElem.className = "ThreeJSCANVAS";
+document.body.appendChild(domElem);
 
 // const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 // 
@@ -74,6 +73,7 @@ function fileUP() {
                     URL.createObjectURL(file),
                     function (object) {   // called when resource is loaded
                         volumeCalculated = processOBJChildren(object, userImportMaterial);
+                        volumeCalculated = math.unit(volumeCalculated, 'm').toNumber(unitSelect.value);
                         console.log("Upload volume is " + volumeCalculated);
                     },
                     loadingBar,
@@ -88,6 +88,7 @@ function fileUP() {
                         scene.add(mesh);
                         //Calculating Volume for validation:
                         volumeCalculated = getVolume(object);
+                        volumeCalculated = math.unit(volumeCalculated, 'm').toNumber(unitSelect.value);
                         console.log("Upload volume is " + volumeCalculated);
 
                     },
@@ -107,7 +108,7 @@ function fileUP() {
         else {
             alert("No Comparison Selected!");
         }
-    } else{
+    } else {
         alert("No File Selected!");
     }
 }
@@ -177,6 +178,7 @@ function compareModels() {
         "/public/" + comparisonSelect.value,
         function (object) {   // called when resource is loaded
             compVol = processOBJChildren(object, referenceFileMaterial);
+            compVol = math.unit(compVol, 'm').toNumber(unitSelect.value);
             console.log("Reference volume is " + compVol);
             volumeModalText.innerHTML = "Upload volume is " + volumeCalculated + "\nReference volume is " + compVol;
             volumeModal.show();
@@ -192,9 +194,11 @@ function compareModels() {
 }
 
 function resetScene() {
+    convertUnits();
     for (var i = scene.children.length - 1; i >= 0; i--) {
         let obj = scene.children[i];
         scene.remove(obj);
+
     }
 
 }
