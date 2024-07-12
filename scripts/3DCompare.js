@@ -9,7 +9,7 @@ const ROUNDTO = 2;
 
 // Three.js renderers and scenes.
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
 const renderer = new THREE.WebGLRenderer();
 // File loaders
 const stlLoader = new STLLoader();
@@ -25,6 +25,10 @@ const referenceFileMaterial = new THREE.MeshBasicMaterial({ color: 0xFF0000, wir
 // Modal used for displaying volume info
 const volumeModal = new bootstrap.Modal(document.getElementById('volumeCheckModal'));
 const volumeModalText = document.getElementById("volumeDisplayText");
+const volumeModalTitle = document.getElementById("volumeDisplayTitle");
+const volumeModalType = document.getElementById("volumeDisplayType");
+const volumeModalIcon = document.getElementById("volumeDisplayIcon");
+
 // User and Reference file calculated volumes
 var userVolume = 0;
 var comparisonVolume = 0;
@@ -39,6 +43,9 @@ document.body.appendChild(domElem);
 
 // Setup the camera
 camera.position.z = 5;
+camera.position.x = 30;
+camera.position.y = 30;
+
 var controls = new OrbitControls(camera, renderer.domElement);
 
 // Setting onclick events for the buttons
@@ -203,9 +210,8 @@ function compareModels() {
             comparisonVolume = processOBJChildren(object, referenceFileMaterial);
             comparisonVolume = math.round(math.unit(comparisonVolume, 'm^3').toNumber('mm^3'), ROUNDTO);
             console.log(`Reference volume is ${comparisonVolume} mm^3`);
-            volumeModalText.innerHTML = `Upload volume is <span class="text-primary">${userVolume} mm^3</span><br>
-            Reference volume is <span class="text-success">${comparisonVolume} mm^3</span>`;
-            volumeModal.show();
+            displayModal(userVolume == comparisonVolume, `Upload volume is <span class="text-primary">${userVolume} mm^3</span><br>
+            Reference volume is <span class="text-success">${comparisonVolume} mm^3</span>`);
         },
         function (xhr) {
             referenceBar.ariaValueNow = (xhr.loaded / xhr.total * 100);
@@ -219,11 +225,25 @@ function compareModels() {
 
 //* Resets the Scene.
 function resetScene() {
-    volumeModal.show();
     for (var i = scene.children.length - 1; i >= 0; i--) {
         let obj = scene.children[i];
         scene.remove(obj);
 
     }
 
+}
+
+function displayModal(passed, innerText) {
+    volumeModalText.innerHTML = innerText;
+    if (passed) {
+        volumeModalType.classList.replace('modal-box-failure', 'modal-box-success');
+        volumeModalIcon.classList.replace('fa-thumbs-down', 'fa-thumbs-up');
+        volumeModalTitle.innerHTML = "Success!";
+        volumeModal.show();
+    } else {
+        volumeModalType.classList.replace('modal-box-success', 'modal-box-failure');
+        volumeModalIcon.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
+        volumeModalTitle.innerHTML = "Failure!";
+        volumeModal.show();
+    }
 }
