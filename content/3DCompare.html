@@ -11,6 +11,9 @@ permalink: /3DCompare
           }
         }
       </script>
+<link rel="stylesheet" href="../css/fontawesome-all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/mathjs@13.0.2/lib/browser/math.min.js"></script>
 <script type="module" src="../scripts/3DCompare.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -22,15 +25,16 @@ permalink: /3DCompare
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
 <div id="uploadContainer">
     <div class="row justify-content-start">
         <div class="col-3">
             <select class="custom-select" id="comparisonFileSelect">
-                <option selected>Choose...</option>
+                <option>Choose...</option>
                 <option value="chall1.obj">Air Boat</option>
                 <option value="chall2.obj">Lamp</option>
                 <option value="chall3.obj">ROI</option>
-                <option value="chall4.obj">Reference</option>
+                <option selected value="chall4.obj">Reference</option>
             </select>
         </div>
         <div class="col-3">
@@ -69,24 +73,27 @@ permalink: /3DCompare
         </div>
     </div>
 </div>
-
-
 <!-- Modal -->
-<div class="modal fade" id="volumeCheckModal" tabindex="-1" role="dialog" aria-labelledby="volumeCheckModal"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="volumeModelLabel">Geometry Check</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+</div>
+<div class="modal-box">
+    <div class="modal fade" id="volumeCheckModal" tabindex="-1" role="dialog" aria-labelledby="volumeCheckModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" role="document">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">×</span>
                 </button>
-            </div>
-            <div class="modal-body">
-                <p id="volumeDisplayText"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-body">
+                    <div class="modal-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <h3 class="title">success</h3>
+                    <!-- <p id="volumeDisplayText"></p> -->
+                    <button class="btn">done</button>
+                </div>
             </div>
         </div>
     </div>
