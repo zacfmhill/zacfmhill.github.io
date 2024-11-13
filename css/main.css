@@ -6,6 +6,17 @@
     color: #FFFFFF;
 }
 
+.cv2_Canvas {
+    border: 5px solid black;
+
+}
+
+.searchItem {
+    border: 1px dashed red;
+
+}
+
+
 /* Three.JS Content */
 .uploadBox {
     display: grid;
