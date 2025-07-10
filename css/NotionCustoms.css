@@ -28,6 +28,10 @@ h3 {
     color: #000;
 }
 
+.text-white {
+    color: #FFF;
+}
+
 .bg-papercut {
     background-color: #05ad59;
 }
@@ -36,8 +40,12 @@ h3 {
     background-color: #1869db;
 }
 
-.bg- .icon-small {
+.icon-small {
     width: 20px;
     height: 20px;
     vertical-align: text-bottom;
+}
+
+.bg-elms {
+    background-color: #990000;
 }
