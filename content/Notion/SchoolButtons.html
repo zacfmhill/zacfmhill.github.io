@@ -15,14 +15,15 @@ permalink: /Notion/buttonsSchool
     <style>
         .neo-brutalist {
             border: 4px solid #000;
-            box-shadow: 5px 5px 0 #000;
+            box-shadow: 3px 3px 0 #000;
             transition: all 0.2s ease;
             margin-bottom: 10px;
+            font-size: 16px;
             width: 150px;
         }
 
         .neo-brutalist:hover {
-            box-shadow: 3px 3px 0 #000;
+            box-shadow: 1px 1px 0 #000;
             transform: translate(2px, 2px);
         }
 
@@ -41,12 +42,34 @@ permalink: /Notion/buttonsSchool
         .text-black {
             color: #000;
         }
+
+        .text-white {
+            color: #FFF;
+        }
+
+        .icon-small {
+            width: 20px;
+            height: 20px;
+            vertical-align: text-bottom;
+        }
+
+        .bg-elms {
+            background-color: #990000;
+        }
     </style>
 
 </head>
 
 <body>
-
+    <button class="neo-brutalist bg-elms text-white text-lg font-bold hover:bg-yellow transition-none"
+        onclick="navigate('https://umd.instructure.com/')">
+        <img class="icon-small" src="/img/Logos/UMD_Logo.png"> ELMS
+    </button>
+    <br>
+    <button class="neo-brutalist bg-jira text-black text-lg font-bold hover:bg-yellow transition-none"
+        onclick="navigate('https://secure.jira.umd.edu/jira/your-work')">
+        <i class="fa fa-code-fork" aria-hidden="true"></i> Jira
+    </button>
 
     <script>
         function navigate(url) {
