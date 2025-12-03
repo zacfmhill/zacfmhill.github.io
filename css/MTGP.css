@@ -1,0 +1,22 @@
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: white;
+}
+
+#output-data-text {
+    color: #000;
+}
+
+#log-data-text {
+    color: #000;
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+.Wrapper {
+    position: relative
+}
+
+.Stacker {
+    position: absolute
+}

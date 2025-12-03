@@ -1,0 +1,40 @@
+---
+layout: default
+title: Projects
+permalink: /projects
+---
+<div class="row">
+    <!-- Main content -->
+    <div class=" mb-3 ">
+        <!-- End of post 1 -->
+        {% for post in site.projects %}
+        <div class="card row-hover pos-relative py-3 px-3 mb-3 border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-3 mb-sm-0">
+                    <h5>
+                        <a href="{{post.url}}" class="text-primary">{{ post.title }}</a>
+                    </h5>
+                    <p class="text-sm"> {{ post.excerpt }}</p>
+                    <div class="text-sm op-5">
+                        {% for category in post.categories %}
+                        <a class="text-tag mr-2">#{{category}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-4 op-7">
+                    <div class="row text-center op-7">
+                        <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span
+                                class="d-block text-sm">X</span> </div>
+                        <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span
+                                class="d-block text-sm">Y</span> </div>
+                        <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span
+                                class="d-block text-sm">Z</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
